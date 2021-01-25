@@ -1,0 +1,13 @@
+<div class="">
+    Sender <input type="text" [(ngModel)]="sender" />
+    <div *ngFor="let user of receiverList">
+        <input type="checkbox" [(ngModel)]="user.selected" value="{{user.userName}}" name="{{user.userName}}" />
+        <label for="vehicle1"> {{user.userName}}</label><br>
+    </div>
+    <div>
+        <input type="text" [(ngModel)]="message" placeholder="type message ..." />
+    </div>
+    <div>
+        <button (click)="sendMessage()">Send to all</button>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="">
+    Sender <input type="text" [(ngModel)]="sender" />
+    Receiver <input type="text" [(ngModel)]="receiver" />
+    <div>
+        <button (click)="getMessages()">Start Conversation</button>
+    </div>
+</div>
+
+<div>
+    <div class="row mt-5">
+        <div class="col-md-6 offset-md-3 col-sm-6 offset-sm-3 col-12 comments-main pt-4 rounded">
+            <div *ngFor="let i of messageList">
+                <ul class="p-0">
+                    <li *ngIf="i.sentBy === sender && i.sentTo === receiver">
+                        <div class="row comments mb-2">
+                            <div class="text-center user-img">
+
+                            </div>
+                            <div class="col-md-7 col-sm-7 col-8 comment rounded mb-2">
+                                <h4 class="m-0">
+                                    <a href="#">{{ sender }}</a>
+                                </h4>
+                                <time class="text-white ml-3">{{
+                    i.timeStamp | date: "shortTime"
+                  }}</time>
+                                <div class="text-white ml-3">{{
+                    i.timeStamp | date: "shortTime"
+                  }}</div>
+                                <p class="mb-0 text-white">
+                                    {{ i.content }}
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="p-0">
+                    <li *ngIf="i.sentBy === receiver && i.sentTo === sender">
+                        <div class="row comments mb-2">
+                            <div class="col-md-2 offset-md-1 col-sm-2 offset-sm-1 col-3 offset-1 text-center user-img">
+
+                            </div>
+                            <div class="col-md-7 col-sm-7 col-8 comment rounded mb-2">
+                                <h4 class="m-0">
+                                    <a href="#">{{ receiver }}</a>
+                                </h4>
+                                <time class="text-white ml-3">{{
+                    i.timeStamp | date: "shortTime"
+                  }}</time>
+                                <p class="mb-0 text-white">
+                                    {{ i.content }}
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="input-group row comment-box-main p-3 rounded-bottom">
+                <div class="input-group-append col-md-9 col-sm-9 col-9">
+                    <input type="text" class="form-control" placeholder="Type a message" [(ngModel)]="message" />
+
+                </div>
+
+                <div class="col-md-3 col-sm-2 col-2 pl-0 text-center send-btn">
+                    <button class="btn btn-info" (click)="postMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
